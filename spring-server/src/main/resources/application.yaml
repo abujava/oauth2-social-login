@@ -21,8 +21,8 @@ spring:
               - email
               - profile
           facebook:
-            clientId: 121189305185277
-            clientSecret: 42ffe5aa7379e8326387e0fe16f34132
+            clientId: 7131372976889143
+            clientSecret: 7d0186c18c3e80a3bef07f743723fa8a
             redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - email
@@ -36,9 +36,9 @@ spring:
               - read:user
         provider:
           facebook:
-            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
-            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
-            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+            authorizationUri: https://www.facebook.com/v17.0/dialog/oauth
+            tokenUri: https://graph.facebook.com/v17.0/oauth/access_token
+            userInfoUri: https://graph.facebook.com/me?fields=id,name,email,picture
 app:
   auth:
     tokenSecret: 04ca023b39512e46d0c2cf4b48d5aac61d34302994c87ed4eff225dcf3b0a218739f3897051a057f9b846a69ea2927a587044164b7bae5e1306219d50b588cb1
