@@ -31,11 +31,8 @@ import java.net.URI;
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
-
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final TokenProvider tokenProvider;
 
     @PostMapping("/login")

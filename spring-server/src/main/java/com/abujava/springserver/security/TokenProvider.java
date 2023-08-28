@@ -3,16 +3,19 @@ package com.abujava.springserver.security;
 import com.abujava.springserver.config.AppProperties;
 import com.abujava.springserver.model.User;
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.UUID;
 
 @Service
 @Slf4j
 public class TokenProvider {
+
 
     private final AppProperties appProperties;
 
@@ -25,29 +28,33 @@ public class TokenProvider {
 
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + appProperties.getAuth().getTokenExpirationMsec());
+        SecretKey secretKey = Keys.hmacShaKeyFor(appProperties.getAuth().getTokenSecret().getBytes());
 
         return Jwts.builder()
                 .setSubject(user.getId().toString())
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
-                .signWith(SignatureAlgorithm.HS512, appProperties.getAuth().getTokenSecret())
+                .signWith(secretKey, SignatureAlgorithm.HS512)
                 .compact();
     }
 
     public UUID getUserIdFromToken(String token) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(appProperties.getAuth().getTokenSecret())
-                .parseClaimsJws(token)
+        SecretKey secretKey = Keys.hmacShaKeyFor(appProperties.getAuth().getTokenSecret().getBytes());
+        Claims body = (Claims) Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build()
+                .parse(token)
                 .getBody();
 
-        return UUID.fromString(claims.getSubject());
+        return UUID.fromString(body.getSubject());
     }
 
     public boolean validateToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(appProperties.getAuth().getTokenSecret()).parseClaimsJws(authToken);
+            SecretKey secretKey = Keys.hmacShaKeyFor(appProperties.getAuth().getTokenSecret().getBytes());
+            Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(authToken);
             return true;
-        } catch (SignatureException ex) {
+        } catch (SecurityException ex) {
             log.error("Invalid JWT signature");
         } catch (MalformedJwtException ex) {
             log.error("Invalid JWT token");

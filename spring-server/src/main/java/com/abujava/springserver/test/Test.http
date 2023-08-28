@@ -1,18 +1,5 @@
-# curl 'http://localhost:8080/user/me' 
-#  -H 'sec-ch-ua: "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"' 
-#  -H 'content-type: application/json' 
-#  -H 'Referer: http://localhost:3000/' 
-#  -H 'sec-ch-ua-mobile: ?0' 
-#  -H 'authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzOTRmOTQ0NS1kYjgzLTQ2YzMtOWZiMi0zNzhjZDUyZjFiZjEiLCJpYXQiOjE2ODkzNTMyODksImV4cCI6MTY5MDIxNzI4OX0.Th_GX-lM6vVPt6HH_nDc8YZfwCP3gORFfGO-UnBGE4JmSnyjsTUWm1CU49WZT7wJpnygiwPEGhuDJMbxVqadIQ' 
-#  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36' 
-#  -H 'sec-ch-ua-platform: "Windows"' 
-#  --compressed
 GET http://localhost:8080/user/me
-sec-ch-ua: "Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"
-Referer: http://localhost:3000/
-sec-ch-ua-mobile: ?0
-authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzOTRmOTQ0NS1kYjgzLTQ2YzMtOWZiMi0zNzhjZDUyZjFiZjEiLCJpYXQiOjE2ODkzNTMyODksImV4cCI6MTY5MDIxNzI4OX0.Th_GX-lM6vVPt6HH_nDc8YZfwCP3gORFfGO-UnBGE4JmSnyjsTUWm1CU49WZT7wJpnygiwPEGhuDJMbxVqadIQ
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
-sec-ch-ua-platform: "Windows"
-Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwN2FiYmNkOS1jYmY1LTQyNDQtODIyYi02NzA4MTcwY2VjZDAiLCJpYXQiOjE2OTMyMTYxMzUsImV4cCI6MTY5NDA4MDEzNX0.qltcTT4JI6yo8kq0WBX3ZF2ldCWFMFdyTmo3wGy_3hVIV02xTcslxleeFFGzK2RR_sY3Fy24x-mcMhwwdE1pRw
 
+###
+GET http://localhost:8080/auth/hello

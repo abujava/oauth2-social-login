@@ -17,7 +17,7 @@ public class UserController {
     private final UserRepository userRepository;
 
     @GetMapping("/me")
-    // @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public User getCurrentUser(@CurrentUser User user) {
         return userRepository.findById(user.getId())
                 .orElseThrow(() -> RestException.notFound("User"));
