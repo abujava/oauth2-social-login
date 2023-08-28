@@ -1,10 +1,15 @@
 package com.abujava.springserver.model;
 
-public enum  AuthProvider {
-    LOCAL,
-    FACEBOOK,
-    GOOGLE,
-    GITHUB
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@Getter
+@AllArgsConstructor
+public enum AuthProvider {
+    LOCAL("local"),
+    FACEBOOK("facebook"),
+    GOOGLE("google"),
+    GITHUB("github");
 
+    private final String value;
 }
